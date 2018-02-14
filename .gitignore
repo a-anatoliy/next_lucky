@@ -4,11 +4,13 @@
 *.sql
 *.sqlite
 
-# Media files
+# -- Media files
 *.jpg
 *.mov
 *.avi
+# -- archives
 *.zip
+*.7z
 
 .idea
 

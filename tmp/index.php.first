@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+<?php
+session_start();
+define ( 'ROOT_DIR', dirname ( __FILE__ ) );
+$logFile = ROOT_DIR."/data/hitcount.txt";
+$cfg = require 'data/cfg/config.php';
+$langPack = require 'data/cfg/lang.php';
+$lang='pl';
+$langPack=$langPack[$lang];
+
+//require 'bin/hit_counter.php';
+//$hit_obj = new BT_HitCounter();
+//$hit_obj->unique_visits = true;
+//$hit_obj->hit_count_file = $logFile;
+//
+//if(!isset($_SESSION["counted"])){
+//    $hit_obj->recordHit();
+//    $_SESSION["counted"]=1;
+//}
+?>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Пример на bootstrap 4: Продукт - ориентированная на продукт продвигающая маркетинговая страница с обширной сеткой и изображениями.">
+    <meta name="author" content="">
+    <!--    <link rel="icon" href="favicon.ico">-->
+
+    <title>Продукт | Product example for Bootstrap</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+
+<!--<nav class="navbar navbar-expand-lg navbar-light bg-light">-->
+<nav class="navbar navbar-expand-lg navbar-light bg-light rounded">
+    <!--<nav class="navbar navbar-expand-lg navbar-dark bg-dark">-->
+    <!--    <div class="container d-flex flex-column flex-md-row justify-content-between">-->
+    <div class="container">
+        <a class="navbar-brand" href="#">
+            <img src="/i/site-logo.png" alt="Lucky DRESS">
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent"
+                aria-expanded="false"
+                aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="#">ABOUT</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">CONTACT</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        GALLERY
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="#">Dress</a>
+                        <a class="dropdown-item" href="#">Necklaces</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">Something else here</a>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link disabled" href="#">Disabled</a>
+                </li>
+            </ul>
+
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="/pl">PL <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item"><a class="nav-link" href="/en">EN</a></li>
+                <li class="nav-item"><a class="nav-link" href="/ru">RU</a></li>
+            </ul>
+
+
+        </div>
+    </div>
+    <!--    </div>-->
+</nav>
+
+<!-- Begin page content -->
+<main role="main" class="container">
+    <!-- Main jumbotron for a primary marketing message or call to action -->
+    <div class="jumbotron">
+        <div class="container">
+            <h1 class="display-3">Hello, world!</h1>
+            <p>This is a template for a simple marketing or informational website. It includes a large callout called a jumbotron and three supporting pieces of content. Use it as a starting point to create something more unique.</p>
+            <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more &raquo;</a></p>
+        </div>
+    </div>
+</main>
+
+
+<!-- Begin footer content -->
+<footer class="footer">
+    <div class="container">
+        <span class="text-muted">Place sticky footer content here.</span>
+    </div>
+</footer>
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script>window.jQuery || document.write('<script src="/js/jquery-slim.min.js"><\/script>')</script>
+<script src="/js/popper.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+</body>
+</html>
