@@ -1,0 +1,13 @@
+https://github.com/gumlet/php-image-resize  - PHP library to resize, scale and crop images. Cloud solution available at: https://www.gumlet.com
+https://php-academy.kiev.ua/blog/optimizatsiya-izobrazheniy-v-php - Оптимизация изображений в РНР
+http://sitear.ru/material/preview_of_picture_with_php - Превью картинки на PHP
+https://github.com/IhorZhuk/jQueryImgGallery - jQueryImgGallery (2 years ago)
+
+
+https://github.com/phanan/htaccess - .htaccess Snippets
+
+http://bootstrap-4.ru/docs/4.0/components/list-group/ -
+http://bootstrap-4.ru/docs/4.0/examples/
+http://bootstrap-4.ru/docs/4.0/examples/blog/#
+
+https://srs.myrusakov.ru/php2?th=5a860d01c9094

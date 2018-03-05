@@ -13,6 +13,8 @@
 *.7z
 
 .idea
+.idea/*
+
 
 # OS generated files #
 ######################

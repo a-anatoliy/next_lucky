@@ -1,0 +1,15 @@
+AddDefaultCharset UTF-8
+
+RewriteEngine on
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^(.*) ./?%{QUERY_STRING}
+
+ErrorDocument 400 /bin/errors.php
+ErrorDocument 403 /bin/errors.php
+ErrorDocument 404 /bin/errors.php
+ErrorDocument 405 /bin/errors.php
+ErrorDocument 408 /bin/errors.php
+ErrorDocument 500 /bin/errors.php
+ErrorDocument 502 /bin/errors.php
+ErrorDocument 504 /bin/errors.php
