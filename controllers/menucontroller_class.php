@@ -11,17 +11,15 @@
 
 defined('_ATHREERUN') or die('Ай-яй-яй, сюда нельзя!');
 
-
-
-//class MenuController extends MainController {
 class MenuController  {
 
     public function __construct($parent) {
-        $this->id      = $parent->actionPage;
-        $this->lang    = $parent->langCurrent;
+        $this->id      = $parent->model;
+        $this->lang    = $parent->lang;
         $this->pageIDs = $parent->pageIDs;
         $this->langIDs = $parent->langIDs;
         $this->media   = $parent->media;
+//echo '<pre>obj: '; var_dump($parent); echo '</pre>';
     }
 
     public function buildMenu() {
@@ -42,7 +40,7 @@ class MenuController  {
     }
 
     private function getElements($part) {
-        $outString  = "<li class=\"nav-item\">";
+        $outString     = "<li class=\"nav-item\">";
         $activeHrefStr = '<a class="nav-link active-link" href="%s">%s</a>';
         $arrName = $part."IDs";
         foreach ($this->$arrName as $dest) {

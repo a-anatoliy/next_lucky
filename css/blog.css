@@ -1,6 +1,5 @@
 /* stylelint-disable selector-list-comma-newline-after */
 
-
 @font-face {
     font-family:'Comfortaa';
     src: url('/css/fonts/Comfortaa-Regular.ttf');
@@ -21,9 +20,19 @@ body {
 }
 */
 
+#brdr {
+    line-height: 1; border: 1px solid red;
+}
+
 .handwrited { font-family: 'Italianno', cursive; font-size: 2.1rem; }
 .footer-handwrited { font-family: 'Italianno', cursive; font-size: 1.8rem; }
-.blog-header { line-height: 1; border-bottom: 2px solid #e5e5e5; }
+.blog-header {
+    /*line-height: 1; border-bottom: 2px dotted #dcdcdc; */
+    background-image: url("/i/tophline.png"); background-repeat: repeat-x; background-position: bottom;
+}
+#bordered {
+    line-height: 1; border-bottom: 1px solid #dcdcdc;
+}
 /*
 .blog-header-spacing {  font-size: 3rem; letter-spacing: 5px; word-spacing: 20px; }
 .blog-header-logo { font-family: 'Great Vibes', cursive; }
@@ -112,3 +121,5 @@ h1, h2, h3, h4, h5, h6 { font-family: "Playfair Display", Georgia, "Times New Ro
 }
 
 .blog-footer p:last-child { margin-bottom: 0; }
+
+
