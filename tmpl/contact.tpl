@@ -11,20 +11,20 @@
     <div class="container">
         <div class="row">
             <div class="col-8" id="form-div">
-                <form role="form" id="contactForm" data-toggle="validator" class="animated shake">
+                <form role="form" id="contactForm" class="animated shake needs-validation">
                     <div class="row">
                         <div class="col-6">
                             <div class="form-group">
                                 <div class="input-group">
                                     <div class="input-group-prepend"><div class="input-group-text"><span class="fa fa-user"></div></div>
-                                    <input type="text" class="form-control" name="name" id="name" placeholder="<?=$name?>" required="" data-validation-required-message="Please enter your name." />
+                                    <input type="text" class="form-control" name="name" id="name" placeholder="<?=$name?>" required />
                                 </div>
                             </div>
 
                             <div class="form-group">
                                 <div class="input-group">
                                     <div class="input-group-prepend"><div class="input-group-text"><span class="fa fa-envelope"></span></div></div>
-                                    <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" required="required" />
+                                    <input type="email" class="form-control" name="email" id="email" placeholder="Email" required="required" />
                                 </div>
                             </div>
                             <div class="form-group">
@@ -42,7 +42,7 @@
                         <div class="col-12 form-group">
                             <div class="clearfix">
                                 <button type="submit" id="form-submit" class="btn btn-secondary contact-button float-left"> <?=$act?> </button>
-                                &nbsp; <button type="reset" value="reset" accesskey="r" id="form-submit" class="btn btn-secondary contact-button"> reset </button>
+                                &nbsp; <button type="reset" value="reset" accesskey="r" id="form-submit" class="btn btn-secondary contact-button" onclick="formReset()"> reset </button>
                                 <div id="msgSubmit" class="float-lg-right hidden"></div>
                             </div>
                         </div>
@@ -64,6 +64,24 @@
             </div>
         </div>
     </div>
+
+    <script>
+        (function() {
+            'use strict';
+            window.addEventListener('load', function() {
+                var forms = document.getElementsByClassName('needs-validation');
+                var validation = Array.prototype.filter.call(forms, function(form) {
+                    form.addEventListener('submit', function(event) {
+                        if (form.checkValidity() === false) {
+                            event.preventDefault();
+                            event.stopPropagation();
+                        }
+                        form.classList.add('was-validated');
+                    }, false);
+                });
+            }, false);
+        })();
+    </script>
 
     <script>
         function initMap() {
@@ -96,7 +114,7 @@
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDDQKdquc3DvxXQU51TLOxn-9hv5hKoa64&callback=initMap&clickableIcons=false" async defer></script>
 
     <!-- Map Section -->
-    <div class="container">
+    <div class="container-fluid">
         <div class="row">
             <div class="col-12 text-center">
                 <div id="map"> </div>
@@ -104,7 +122,6 @@
         </div>
     </div>
 
-
-<!-- Plugin JavaScript -->
-<script type="text/javascript" src="/js/validator.min.js"></script>
-<script type="text/javascript" src="/js/form-scripts.js"></script>
+    <!-- Plugin JavaScript -->
+    <script type="text/javascript" src="/js/validator.min.js"></script>
+    <script type="text/javascript" src="/js/form-scripts.js"></script>

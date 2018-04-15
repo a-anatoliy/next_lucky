@@ -269,30 +269,93 @@ class Utils {
         return $_coords;
     }
 
-    public function buildCarouselImages($directoryPath,$limit = 5) {
+    public function getImgContainer($IndexFile,$containerName) {
+        $stringFormat = '<div class="ramka"><a href="%s/%s"><img class="rounded float-left" src="%s/t/%s" alt="Lucky dress"></a></div>';
+        $imagesString="\n"; $pattern = preg_quote(sprintf("/%s/",$containerName));
+        if (! $this->checkFileExists($IndexFile)) {
+            return $imagesString;
+        } else {
+            $handle = @fopen($IndexFile, "r");
+            if ($handle) {
+                while (($buffer = fgets($handle, 4096)) !== false) {
+                    $Images = explode("|", $buffer);
+
+                    if (preg_match($pattern,$Images[0])) {
+                        $i = $Images[0]; $f = $Images[1];
+                        $imagesString .= sprintf($stringFormat,$i,$f,$i,$f);
+                    }
+                }
+                fclose($handle);
+            }
+        }
+        return $imagesString;
+    }
+
+    public function buildCarouselImages($IndexFile,$limit = 5) {
         $stringFormat = '<div class="carousel-item%s"><img class="d-block w-100" src="%s"></div>';
         $count = 0; $imgList = array();
-        $imagesString=""; $activeMark = " active";
-
-        foreach(glob($directoryPath . "/*.jpg") as $file) {
-            // Получаем размеры и тип изображения (число)
-            list($wi, $hi, $type) = getimagesize($file);
-            if ($hi > 400) { continue; }
-            else {  $imgList[] = $file; $count++;}
-            if ($count == $limit) {break;}
+        $imagesString="\n"; $activeMark = " active";
+        if (! $this->checkFileExists($IndexFile)) {
+            return $imagesString;
+        } else {
+            $handle = @fopen($IndexFile, "r");
+//            echo var_dump($IndexFile);
+            if ($handle) {
+                while (($buffer = fgets($handle, 4096)) !== false) {
+                    $Images = explode("|", $buffer);
+                    if ($Images[3] == 400) {
+                        array_push($imgList,sprintf("%s/%s",$Images[0],$Images[1]));
+                    }
+                }
+                fclose($handle);
+            } else { return $imagesString; }
         }
+
+/*
+        # read all of directories under root $directoryPath
+        $handle = opendir($directoryPath);
+
+        while(($entry = readdir($handle)) !== false) {
+            if($entry == "." || $entry == "..") { continue; }
+
+            $currDir = $directoryPath.DIRECTORY_SEPARATOR.$entry;
+
+            if(is_dir($currDir)) {
+                foreach(glob($currDir . "/*.jpg") as $file) {
+                    // Получаем размеры и тип изображения (число)
+                    list($wi, $hi, $type) = getimagesize($file);
+                    if ($hi > 400) { continue; }
+                    else { $imgList[] = $file; }
+                }
+            }
+        }
+*/
+        # shuffle the array
         shuffle($imgList);
-        foreach ($imgList as $item) {
+        $randImages = array_rand($imgList, $limit);
+
+        foreach ($randImages as $index) {
+            $item = $imgList[$index];
             $i = str_replace(ROOT_DIR,'',$item);
             $imgStr = sprintf($stringFormat,$activeMark,$i);
-            $activeMark=''; $imagesString .= $imgStr."\n";
+            $activeMark=''; $imagesString .= "\n".$imgStr;
         }
-    return $imagesString;
+
+        # create images string
+//        foreach ($imgList as $item) {
+//            if ($count === $limit) { break; }
+//            $i = str_replace(ROOT_DIR,'',$item);
+//            $imgStr = sprintf($stringFormat,$activeMark,$i);
+//            $activeMark=''; $imagesString .= $imgStr."\n";
+//            $count++;
+//        }
+
+    return $imagesString."\n";
     }
 
     public function getFilesFromDir($dirPath, $ext = 'jpg') {
 //        $imgList = array_diff(scandir($directoryPath), array('..', '.'));
-//        $imgList = $this->getFilesFromDir($directoryPath);
+
         $result = array(); $ext = '.'.$ext;
         $cdir = scandir($dirPath);
         foreach ($cdir as $item) {
@@ -300,6 +363,27 @@ class Utils {
             if(stripos($item,$ext )){ $result[] = $item; }
         }
         return $result;
+    }
+
+    public function writeFile($file,$entry) {
+        $fp = fopen($file, 'a+', LOCK_EX)
+            or die("ERROR: Can't write to [".$file."], please make sure that your path is correct and you have 
+                    appropriate permissions on the target directory and/or file!");
+        fputs($fp, $entry);
+        fclose($fp);
+    }
+
+    public function dumpObjToFile($fileName,$obj) {
+//        $data = array('one', 'two', 'three');
+        $fh = fopen($fileName, 'w') or die("Can't open file $fileName");
+        // output the value as a variable by setting the 2nd parameter to true
+        $results = print_r($obj, true);
+        fwrite($fh, $results);
+        fclose($fh);
+    }
+
+    public function checkFileExists( $filename ) {
+        return (file_exists($filename) ? true : false);
     }
 
 }

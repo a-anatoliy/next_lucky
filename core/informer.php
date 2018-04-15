@@ -6,19 +6,29 @@
  * Date: 20.03.2018
  * Time: 15:24
  */
-class Informer extends Page {
 
-    private $username,$usermail,$usertel,$comment,$hasError;
-    private $sendto,$subject;
-    public  $isMsgSent,$sucsMsg;
+class Informer {
 
-    public function __construct($sucsMsg) {
-        $this->sucsMsg = $sucsMsg;
+    public  $username,$usermail,$usertel,$comment;
+    private $sendto,$hasError;
+    public  $sentStatusCode,$sentMsgStatus,$lang,$internalError,$encyFileName;
 
-        $cfg = require_once ROOT_DIR .'/data/cfg/config.php';
-        $this->sendto  = $cfg["form"]["to"];
-        $this->subject = $cfg["form"]["subject"];
+    // $sentStatusCode = [success|fail]
+    // $sentMsgStatus accordingly taken from the lang([success|fail])
+    const SENT_OK  = 'success';
+    const SENT_BAD = 'mailSendFAIL';
+
+    public function __construct($lang) {
+
+        $cfg = require_once CONFIG;
+        $this->sendto     = $cfg["form"]["to"];
+        $this->Bcc_sendto = $cfg["form"]["bcc"];
+
+        $this->encyOK   = ROOT_DIR . $cfg["stat"]["OK_mail"];
+        $this->encyFAIL = ROOT_DIR . $cfg["stat"]["FAIL_mail"];
+
         unset($cfg);
+        $this->lang = $lang;
 
         if(trim($_POST['name']) == '')   { $this->hasError = true;   } else { $this->username = trim($_POST['name']);  }
         if(trim($_POST['email']) == '')  { $this->hasError = true;   } else { $this->usermail = trim($_POST['email']); }
@@ -29,39 +39,54 @@ class Informer extends Page {
             } else {
                 $this->comment = trim($_POST['message']);
             }
+//            $this->comment = nl2br($this->comment);
+            $this->comment=preg_replace("/[\n\r]+/s","<br/>",$this->comment);
         }
     }
 
     public function informUs() {
         if(!isset($this->hasError)) {
             // creating headers
+            // $to= "Mary <mary@example.com>" . ", " ; //обратите внимание на запятую
+            // $to .= "Kelly <kelly@example.com>";
             $m = strip_tags($this->usermail) . "\r\n";
             $headers  = "From: "    . $m;
             $headers .= "Reply-To: ". $m;
             $headers .= 'Cc: '      . $m;
+            $headers .= 'Bcc: '     . $this->Bcc_sendto . ', WebMaster <a3three@gmail.com>';
             $headers .= "MIME-Version: 1.0\r\n";
             $headers .= "Content-Type: text/html;charset=utf-8 \r\n";
 
             // creating the message body
             $msg  = "<html><body style='font-family:Arial,sans-serif;'>";
-            $msg .= "<h2 style='font-weight:bold;border-bottom:1px dotted #ccc;'>Cообщение с сайта</h2>\r\n";
-            $msg .= "<p><strong>From:</strong> ".$this->username."</p>\r\n";
-            $msg .= "<p><strong>E-mail:</strong> ".$this->usermail."</p>\r\n";
-            $msg .= "<p><strong>Phone number:</strong> ".$this->usertel."</p>\r\n\n";
+            $msg .= "<h2 style='font-weight:bold;border-bottom:1px dotted #ccc;'>Cообщение с сайта</h2>";
+            $msg .= "<p><strong>From:</strong> "        .$this->username ."</p>";
+            $msg .= "<p><strong>E-mail:</strong> "      .$this->usermail ."</p>";
+            $msg .= "<p><strong>Phone number:</strong> ".$this->usertel  ."</p><hr>";
             $msg .= $this->comment;
-            $msg .= "</body></html>";
+            $msg .= "<hr></body></html>";
 
             // sending the message
-            $success = mail($this->sendto, $this->subject, $msg, $headers);
-            if ($success && $this->hasError != true ){ $this->isMsgSent = 'OK'; }
-            else {
-                $this->isMsgSent = "FAIL" ;
+            $success = mail($this->sendto, $this->lang["subject"], $msg, $headers);
+
+            if ($success && $this->hasError != true ) {
+                $this->setSentMsgStatus($this::SENT_OK);
+            } else {
+                $this->setSentMsgStatus($this::SENT_BAD);
                 $success = error_get_last()['message'];
-                $this->sucsMsg = "FAIL. ". strip_tags($success);
+                $this->internalError = strip_tags($success);
             }
-        }
-        else { $this->isMsgSent = $this->sucsMsg = "FAIL. Please, Try again later."; }
+
+        } else { $this->setSentMsgStatus($this::SENT_BAD); }
 
         return $this;
+    }
+
+    private function setSentMsgStatus($code) {
+        $this->sentStatusCode = $code;
+        $this->sentMsgStatus  = $this->lang[ $this->sentStatusCode ];
+        if ($code === $this::SENT_OK) { $this->encyFileName = $this->encyOK; }
+        elseif ($code === $this::SENT_BAD) { $this->encyFileName = $this->encyFAIL; }
+        else { $this->encyFileName = $this->encyOK; }
     }
 }

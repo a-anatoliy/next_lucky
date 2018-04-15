@@ -7,7 +7,7 @@ abstract class AbstractController {
 	public function __construct($view,$params) {
 		$this->view = $view;
 
-        $this->cfg      = require_once ROOT_DIR.'/data/cfg/config.php';
+        $this->cfg      = require CONFIG;
 		$this->langPack = require ROOT_DIR.'/data/cfg/lang.php';
 
         // get all of supported languages
@@ -19,16 +19,18 @@ abstract class AbstractController {
 
 		$this->langPack = $this->langPack[ $params["lang"] ];
 
-        $this->pageIDs  = explode(',',$this->langPack["pages"]);
-        $this->media    = explode(',',$this->langPack["media"]);
+        $this->title = ucfirst($params["model"]);
+        foreach (array("meta_desc","meta_key") as $key) {
+                $this->$key = $this->langPack[$key];
+        }
+
+//        $this->pageIDs  = explode(',',$this->langPack["pages"]);
+//        $this->media    = explode(',',$this->langPack["media"]);
 
         $this->utils = new Utils();
 
 /*
         echo '<pre>obj: '; var_dump($params); echo '</pre>';
-        ["model"]   => "home"
-        ["lang"]    => "en"
-        ["subModel"]=> ""
 */
 
 	}
@@ -37,7 +39,7 @@ abstract class AbstractController {
 
 
 	
-	public function action404() {
+	public function action404($res) {
 		header("HTTP/1.1 404 Not Found");
 		header("Status: 404 Not Found");
 	}

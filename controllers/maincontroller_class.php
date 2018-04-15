@@ -12,16 +12,31 @@ class MainController extends AbstractController {
 //        printf("<pre>languages ARE equal [%s] == [%s]</pre>",$cookieLang,$sessinLang);
 //echo '<pre>obj: '; var_dump($this); echo '</pre>';
 //         echo '<pre>obj: '; var_dump($this); echo '</pre>';
+//        $this->utils->writeFile(ROOT_DIR.'/data/dumper.txt',serialize($this->info));
 
-	public function action404() {
-		parent::action404();
-		$this->title     = "Страница не найдена - 404";
-		$this->meta_desc = "Запрошенная страница не существует.";
-		$this->meta_key  = "страница не найдена, страница не существует, 404";
-		
-		$content = $this->view->render("404", array(), true);
+
+	public function action404($res) {
+        parent::action404($res);
+/*
+$guestParam["ip"]
+$guestParam["status"]
+$guestParam["reqUri"]
+$guestParam["refer"]
+ */
+        $message = json_decode($res, true);
+
+//echo '<pre>obj: '; var_dump($message); echo '</pre>';
+
+		$this->title = $this->meta_desc = $message["code"];
+		$this->meta_key = $message["message"];
+
+//		$message["title"] = $message["meta_desc"] = $message["code"];
+//        $message["meta_key"] = $message["message"];
+
+		$content = $this->view->render("404", $message, true);
 		
 		$this->render($content);
+
 	}
 	
 	public function actionHome() {
@@ -29,7 +44,8 @@ class MainController extends AbstractController {
         $params = array();
 
         $params["intro"] = $this->langPack["intro"];
-        $params["carouselImages"] = $this->utils->buildCarouselImages(ROOT_DIR.'/i/sessions/dayOne');
+        $params["carouselImages"] = $this->utils->buildCarouselImages($this->getImgIndex());
+
 
 //        $this->header    = $this->view->render("header", array(), true);
 //        $this->footer    = $this->view->render("footer", array(), true);
@@ -44,15 +60,31 @@ class MainController extends AbstractController {
 //		$this->title     = "Внутренняя страница";
 //		$this->meta_desc = "Описание внутренней страницы.";
 //		$this->meta_key  = "описание, описание внутренней страницы";
-		
+
 //		$content = $this->view->render("about", array(), true);
         $params = array();
+        $params["title"] = "About";
 
         $params["intro"] = $this->langPack["intro"];
         $content = $this->view->render("about", $params, true);
-		
+
 		$this->render($content);
 	}
+
+    public function actionMedia() {
+
+//		$content = $this->view->render("about", array(), true);
+        $params = array();
+
+        foreach ($this->cfg["mediaDirs"] as $n => $dir) {
+            $params[$n]  = $this->utils->getImgContainer($this->getImgIndex(),$dir);
+            $params[$n."Title"] = $this->langPack["media"][$n];
+        }
+
+        $content = $this->view->render("media", $params, true);
+
+        $this->render($content);
+    }
 
     public function actionContact() {
 //		$this->title     = "Внутренняя страница";
@@ -70,13 +102,34 @@ class MainController extends AbstractController {
         $this->render($content);
     }
 
+    public function getImgIndex() {
+        return ROOT_DIR.$this->cfg["site"]["imgIndex"];
+    }
+
 	protected function render($str) {
         $menu = new MenuController($this);
+        $menus = array(
+            "baseMenu" => $menu->renderBase(),
+            "langsMenu"=> $menu->renderLangs()
+        );
 
 		$params = array();
-		$params["title"]     = $this->langPack["title"];
-		$params["meta_desc"] = $this->langPack["meta_desc"];
-		$params["meta_key"]  = $this->langPack["meta_key"];
+
+		foreach (array("meta_desc","meta_key") as $key) {
+//		    if (empty($params[$key])) {
+//            $params[$key] = sprintf("%s - %s",$this->$key, $this->langPack[$key]);
+            $params[$key] = $this->$key;
+//            }
+        }
+
+        if (preg_match("/home/i",$this->title)) {
+            $params["title"] = $this->langPack["title"];
+        } else {
+            $params["title"] = $this->title." - ".$this->langPack["title"];
+        }
+
+//		$params["meta_desc"] = $this->langPack["meta_desc"];
+//		$params["meta_key"]  = $this->langPack["meta_key"];
 
 //		$params["header"]    = $this->header;
 //		$params["footer"]    = $this->footer;
@@ -85,7 +138,8 @@ class MainController extends AbstractController {
 		$params["header"]    = $this->view->render("header", array(), true);
 		$params["carousel"]  = $this->model == 'home' ? $this->carousel : '';
 
-		$params["menu"]      = $menu->buildMenu();
+//		$params["menu"]      = $menu->buildMenu();
+		$params["menu"]      = $this->view->render("menu", $menus, true);
 
 		$params["footer"]    = $this->view->render("footer", array(), true);
 		$params["content"]   = $str;

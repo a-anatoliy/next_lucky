@@ -1,9 +1,11 @@
 <?php
 	mb_internal_encoding("UTF-8");
+    date_default_timezone_set('CET');
 
-//    error_reporting(E_ALL);
-    ini_set('display_errors', 0);
-//    ini_set('display_startup_errors', 1);
+    error_reporting(E_ALL);
+//    ini_set('display_errors', 0);
+    ini_set('display_errors', 1);
+    ini_set('display_startup_errors', 1);
 
 	set_include_path(get_include_path().PATH_SEPARATOR."core".PATH_SEPARATOR."controllers");
 	spl_autoload_extensions("_class.php");
@@ -13,6 +15,8 @@
 	define("DIR_TMPL", ROOT_DIR."/tmpl/");
 	define("MAIN_LAYOUT", "main");
     define( '_ATHREERUN', 1 );
+
+    define('CONFIG',ROOT_DIR .'/data/cfg/config.php');
 
     include ROOT_DIR .'/lib/SxGeo.php';
     require_once ROOT_DIR . '/lib/Utils.php';

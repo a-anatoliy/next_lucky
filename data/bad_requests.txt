@@ -1,0 +1,3 @@
+06.04.2018 16:14:50|127.0.0.1|Anatol|a3three@gmail.com|( 48)537161337|ntact us via phone in advan|mail(): Failed to connect to mailserver at "localhost" port 25, verify your "SMTP" and "smtp_port" setting in php.ini or use ini_set()
+06.04.2018 16:15:07|127.0.0.1|Anatol|a3three@gmail.com|( 48)537161337|ntact us via phone in advan|mail(): Failed to connect to mailserver at "localhost" port 25, verify your "SMTP" and "smtp_port" setting in php.ini or use ini_set()
+06.04.2018 16:21:40|127.0.0.1|Анатолий|athree@protonmail.com|48 537 161 337|ontact us via phone in advance regar|mail(): Failed to connect to mailserver at "localhost" port 25, verify your "SMTP" and "smtp_port" setting in php.ini or use ini_set()

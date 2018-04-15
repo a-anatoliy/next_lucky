@@ -5,7 +5,6 @@
  * Date: 14.02.2018
  * Time: 16:51
  */
-//defined('_ATHREERUN') or die('Ай-яй-яй, сюда нельзя!');
 $ip     = $_SERVER['REMOTE_ADDR'];
 $status = $_SERVER['REDIRECT_STATUS'];
 $reqUri = $_SERVER["REQUEST_URI"];
@@ -35,7 +34,7 @@ if (isset($ip)) {
 }
 ?>
 
-<!doctype html><html lang="en"><head><?php header('refresh:4;url=/ '); ?><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><meta name="description" content="Error"><title>Lucky DRESS | atelier</title><link href="/css/bootstrap.min.css" rel="stylesheet"></head>
+<!doctype html><html lang="en"><head><?php header('refresh:4;url=http://lucky-dress.eu/ '); ?><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><meta name="description" content="Error"><title>Lucky DRESS | atelier</title><link href="/css/bootstrap.min.css" rel="stylesheet"></head>
 <body><div class="container"><div class="row"><div class="col-12 justify-content-between">
 <?php echo
     '<h3>Oh, Snap! &nbsp; Error: <small>'.$title.'!</small></h3><p>'.$message.'</p>'.
