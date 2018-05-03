@@ -14,34 +14,39 @@
                 <form role="form" id="contactForm" class="animated shake needs-validation">
                     <div class="row">
                         <div class="col-6">
+
                             <div class="form-group">
                                 <div class="input-group">
-                                    <div class="input-group-prepend"><div class="input-group-text"><span class="fa fa-user"></div></div>
-                                    <input type="text" class="form-control" name="name" id="name" placeholder="<?=$name?>" required />
+                                    <div class="input-group-prepend"><div class="input-group-text"><span class="fa fa-user"></span></div></div>
+                                    <input type="text" class="form-control" name="name" id="name" placeholder="<?=$name_placeholder?>" title="<?=$name_title?>" required />
                                 </div>
                             </div>
 
                             <div class="form-group">
                                 <div class="input-group">
                                     <div class="input-group-prepend"><div class="input-group-text"><span class="fa fa-envelope"></span></div></div>
-                                    <input type="email" class="form-control" name="email" id="email" placeholder="Email" required="required" />
+                                    <input type="email" class="form-control" name="email" id="email" placeholder="<?=$email_placeholder?>" title="<?=$email_title?>" required />
                                 </div>
                             </div>
+
                             <div class="form-group">
                                 <div class="input-group">
                                     <div class="input-group-prepend"><div class="input-group-text"><span class="fa fa-phone"></span></div></div>
-                                    <input type="phone" class="form-control" name="phone" id="phone" placeholder="<?=$phoneNumb?>" />
+                                    <input type="phone" class="form-control" name="phone" id="phone" placeholder="<?=$phone_placeholder?>" title="<?=$phone_title?>"/>
                                 </div>
                             </div>
                         </div>
+
                         <div class="col-6">
+
                             <div class="form-group">
-                                <textarea name="message" id="message" class="form-control" rows="6" cols="25" required="required" placeholder="<?=$message?>"></textarea>
+                                <textarea name="message" id="message" class="form-control" rows="6" cols="25" placeholder="<?=$message_placeholder?>" title="<?=$message_title?>" required></textarea>
                             </div>
+
                         </div>
                         <div class="col-12 form-group">
                             <div class="clearfix">
-                                <button type="submit" id="form-submit" class="btn btn-secondary contact-button float-left"> <?=$act?> </button>
+                                <button type="submit" id="form-submit" class="btn btn-secondary contact-button float-left" title="<?=$act_title?>"> <?=$act_placeholder?> </button>
                                 &nbsp; <button type="reset" value="reset" accesskey="r" id="form-submit" class="btn btn-secondary contact-button" onclick="formReset()"> reset </button>
                                 <div id="msgSubmit" class="float-lg-right hidden"></div>
                             </div>
@@ -53,10 +58,11 @@
                 <legend id="bordered"><span class="fa fa-globe"></span> Adress</legend>
                 <address>
                     &nbsp; ul. Długa<span class="header_date"> 17, 31-147</span> <strong>Kraków</strong><br>
-                    &nbsp; Pasaż Wenecki, «Szczęśliwa sukienka»<br>
-                    &nbsp; <i class="fa fa-phone"></i> <abbr title="Phone number"> Phone:</abbr> <span class="header_date">(+48) 794 64 64 62</span>
+                    &nbsp; Pasaż Wenecki, «Lucky Dress»<br>
+                    &nbsp; <i class="fa fa-phone"></i> <abbr title="Phone number"> Phone:</abbr> <span class="header_date">(+48) 794 64 64 62</span><br>
+                    &nbsp; <i class="fa fa-at"></i> <abbr title="e-mail"> E-mail:</abbr> &lsaquo;<a href="mailto:info@lucky-dress.eu">info<i class="fa fa-at"></i>lucky-dress.eu</a>&rsaquo;
                 </address>
-<!--                <address><span class="fa fa-envelope"></span> <a href="mailto:apanolga@gmail.com">info@lucky-dress.eu</a></address> -->
+
                 <div><strong id="bordered">Godziny otwarcia</strong>
                     <br>&nbsp;pon. – pt. <span class="header_date">10:00 – 18:00</span>
                     <br>&nbsp;sob. <span class="header_date">10:00 – 14:00</span>

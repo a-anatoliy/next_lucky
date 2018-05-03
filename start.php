@@ -11,10 +11,10 @@
 	spl_autoload_extensions("_class.php");
 	spl_autoload_register();
 
-    define ( 'ROOT_DIR', __DIR__ );
+    define("ROOT_DIR", __DIR__ );
 	define("DIR_TMPL", ROOT_DIR."/tmpl/");
 	define("MAIN_LAYOUT", "main");
-    define( '_ATHREERUN', 1 );
+    define('_ATHREERUN', 1 );
 
     define('CONFIG',ROOT_DIR .'/data/cfg/config.php');
 
@@ -26,6 +26,6 @@
         $_SESSION["origURL"] =
             isset($_SERVER['HTTP_REFERER'])
                 ? urldecode($_SERVER['HTTP_REFERER'])
-                : 'empty_REFERER';
+                : 'empty_REFER';
     }
 

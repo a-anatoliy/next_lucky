@@ -11,3 +11,47 @@ http://bootstrap-4.ru/docs/4.0/examples/
 http://bootstrap-4.ru/docs/4.0/examples/blog/#
 
 https://srs.myrusakov.ru/php2?th=5a860d01c9094
+-------------------------------------------------------------
+https://github.com/joshcanhelp/php-form-builder/blob/master/PhpFormBuilder.php
+Список полезных PHP классов и библиотек
+https://habrahabr.ru/post/70808/
+30 чудных библиотек для PHP программистов
+https://habrahabr.ru/post/252851/
+https://github.com/dmolsen/Detector
+https://github.com/j4mie/idiorm/
+Использование связки из PHP и MySQL совместно с Google Maps
+https://habrahabr.ru/post/38290/
+Подключение Paypal
+https://geektimes.ru/post/82595/
+Локализация интерфейса сайта с использованием PHP, Smarty и Gettext
+https://habrahabr.ru/post/115300/
+------------------------------------
+Полное руководство по переходу с HTTP на HTTPS
+https://habrahabr.ru/post/332294/
+------------------------------------
+Работа с формами HTML — генерация форм
+https://habrahabr.ru/sandbox/112014/
+------------------------------------
+Создаем форму обратной связи с помощью Google Forms
+https://habrahabr.ru/post/148332/
+------------------------------------
+
+perl testing + bootstrap templates
+-------------------------------------------------------------
+https://www.techgig.com/skilltest/perl
+https://www.wisdomjobs.com/e-university/perl-scripting-interview-questions.html
+
+https://itchief.ru/lessons/different/free-icons-for-your-website
+
+https://hackerthemes.com/bootstrap-buffet/
+-------------------------------------------------------------
+https://www.loveandlavender.com/2017/11/best-online-wedding-dress-shops/#top
+13 BEST ONLINE SHOPS TO BUY AN AFFORDABLE WEDDING DRESS
+==========================================================
+http://www.databasedev.co.uk/data_models.html
+Sample Data Models
+==========================================================
+https://developers.google.com/maps/solutions/store-locator/clothing-store-locator
+==========================================================
+https://www.phptpoint.com/projects/online-shopping/
+==========================================================

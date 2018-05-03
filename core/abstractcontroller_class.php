@@ -10,8 +10,14 @@ abstract class AbstractController {
         $this->cfg      = require CONFIG;
 		$this->langPack = require ROOT_DIR.'/data/cfg/lang.php';
 
+        $this->utils = new Utils();
+        $this->dbh = $this->utils->lemmeIn($this->cfg["db"]);
+
+        $this->lngsArray = $this->utils->getSupportedLanguages($this);
+
         // get all of supported languages
         $this->langIDs  = array_keys($this->langPack);
+//        $this->langIDs  = array_values($this->lngsArray);
 
         $this->model    = $params["model"];
         $this->lang     = $params["lang"];
@@ -26,9 +32,6 @@ abstract class AbstractController {
 
 //        $this->pageIDs  = explode(',',$this->langPack["pages"]);
 //        $this->media    = explode(',',$this->langPack["media"]);
-
-        $this->utils = new Utils();
-
 /*
         echo '<pre>obj: '; var_dump($params); echo '</pre>';
 */

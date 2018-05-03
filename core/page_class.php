@@ -19,10 +19,9 @@ class Page {
     private $lang,$uri;
 
     public function __construct($uri) {
-        $this->uri = substr($uri, 1);
-        $this->langPack = require_once ROOT_DIR.'/data/cfg/lang.php';
-        $this->LangArray  = array_keys($this->langPack);
-
+        $this->uri       = substr($uri, 1);
+        $this->langPack  = require_once ROOT_DIR.'/data/cfg/lang.php';
+        $this->LangArray = array_keys($this->langPack);
 //        $this->langPack = $this->langPack[ $this->lang ];
 
 

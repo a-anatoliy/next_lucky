@@ -8,11 +8,6 @@ return array(
 			'errString' => 'Неверный формат email адреса',
 			'success'   => 'Форма успешно отправленна!',
         'mailSendFAIL'  => 'Внутренняя ошибка сервера. Пожалуйста, попробуйте еще раз.',
-			'phoneNumb' => 'Номер телефона',
-			'message'   => 'Сообщение',
-			'name'      => 'Имя',
-			'act'       => 'Отправить',
-			'subject'   => 'Запрос на встречу с сайта',
 			'intro'     => '<p class="bukvica">Предлагаем женщинам и девушкам выбрать в нашем салоне потрясающие платья для самых счастливых моментов в жизни.<br>Профессиональные портнихи с многолетней практикой при изготовлении внимательны к каждой детали.<br> Мы используем итальянские ткани. Наш многолетний успешный опыт подкреплен доверием женщин.</p>
                 <p class="bukvica">В "Счастливом Платье" вы найдете уже готовые свадебные платья и платья для торжественных выходов.</p>
                 <p class="bukvica">А если у вас нестандартная фигура или есть свой собственный, неповторимый вкус, и Вы сами знаете, как должно выглядеть Ваше Счастливое платье - мы готовы воплотить в жизнь ваше видение.</p>',
@@ -21,9 +16,6 @@ return array(
 //			'pages'      => array(1=>'главная',2=>'о нас',3=>'контакт',5=>'коллекции',51=>'2017',52=>'2018'),
 			'pages'      => array(1=>'главная',2=>'о нас',3=>'контакт',5=>'коллекции'),
             'media'     => array("other"=> "другое", "misc"=> "изюм", "g18"=> "2018", "g17"=> "2017"),
-
-
-
 		),
 		'pl' => array(
 			'title'     => 'Lucky DRESS - Suknie ślubne - atelier - Kraków',
@@ -33,11 +25,6 @@ return array(
 			'errString' => 'Błędny email adresa.',
 			'success'   => 'Wiadomość została wysłana.',
         'mailSendFAIL'  => 'Coś poszło nie tak, spróbuj ponownie później',
-			'phoneNumb' => 'Telefon',
-			'message'   => 'Treść wiadomości',
-			'name'      => 'Twoje Imię',
-			'act'       => 'Wyślij',
-            'subject'   => 'Zaproszenie na spotkanie',
 			'intro'     => '<p class="bukvica">Każda suknia uszyta w Lucky Dress to <b>Szczęśliwa Sukienka</b>. Wierzymy, że dobrze dobrana sukienka daje każdej z nas wyjątkowe poczucia radości z przeżywania własnej kobiecości.</p>
                 <p class="bukvica">Posiadamy bogate doświadczenie w projektowaniu i krawiectwie najwyższej klasy, dzięki czemu wiemy co uszyć i jak uszyć, aby wydobyć kobiece piękno z każdej sylwetki. Śledzimy najnowsze trendy modowe i nie są nam straszne żadne, nawet najbardziej wyrafinowane projekty.</p>
                 <p class="bukvica">Przykładamy wielką uwagę do detali i wykończenia. Do tworzenia naszych sukni wykorzystujemy najlepsze włoskie tkaniny.</p>
@@ -59,11 +46,6 @@ return array(
 			'errString' => 'Wrong email address.',
 			'success'   => 'Message has been sent.',
         'mailSendFAIL'  => 'Something went horribly wrong, please try again later.',
-			'phoneNumb' => 'Your phone number',
-			'message'   => 'Your message',
-			'name'      => 'Your name',
-			'act'       => 'Submit',
-            'subject'   => 'The meeting request',
 			'intro'     => '<p class="bukvica">We offer women and girls to choose in our shop stunning dresses for the happiest moments in life. Our professional dressmakers with many years of experience in the manufacture attentive to every detail. We use Italian fabric.</p>
 				<p class="bukvica">Many years of our successful experience backed by the trust of women.</p>
 				<p class="bukvica">In the "Lucky Dress" you will find a wedding dresses and dresses for special events like rout or party.</p>

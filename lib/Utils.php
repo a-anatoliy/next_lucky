@@ -50,6 +50,28 @@ class Utils {
 
     /* CRUD functions */
     // ============================================================================
+    public function lemmeIn($inParams) {
+        extract($inParams,EXTR_OVERWRITE);
+        set_exception_handler(function($e) {
+            error_log($e->getMessage());
+            exit('Something weird happened'); //something a user can understand
+        });
+
+        $dsn = "mysql:host=".$host.";dbname=".$name.";charset=utf8mb4";
+        $options = [
+            PDO::ATTR_EMULATE_PREPARES   => false, // turn off emulation mode for "real" prepared statements
+            PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION, //turn on errors in the form of exceptions
+            PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC, //make the default fetch be an associative array
+        ];
+
+        try { $pdo = new PDO($dsn, $user, $pass, $options); }
+        catch (PDOException $e) { $e->getMessage();       }
+
+        return $pdo;
+    }
+
+
+
     /* $value = 'Justin Bieber' */
     /**
      * @param $pdo
@@ -122,28 +144,30 @@ class Utils {
 
     /**
      * @param $pdo
-     * @param $table
+     * @param $query
      * @param $value
      * @return string
      */
-    public function sqlSelect($pdo, $table, $value) {
+    public function sqlSelect($pdo, $query, $value="") {
         try {
-//            $pdo = new PDO('mysql:host=localhost;dbname=someDatabase', $username, $password);
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            $result = $pdo->query('SELECT '.$value.' FROM '.$table);
+            $q = $pdo->prepare($query);
+            if (empty($value)) {$q->execute();} else { $q->execute($value); }
+            return $q->fetchAll();
+        } catch(PDOException $e) {
+            return 'Error: ' . $e->getMessage();
+        }
+    }
 
-            # Выводим результат как объект
-            $result->setFetchMode(PDO::FETCH_CLASS, 'Utils');
+    public static function getSupportedLanguages($parent) {
+        // ->dbh,QueryMap::SELECT_LANGUAGES
+        try {
+            $parent->dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $q = $parent->dbh->prepare(QueryMap::SELECT_LANGUAGES);
+            $res = $q->fetchAll();
+echo '<pre>obj: '; var_dump($res); echo '</pre>';
+            return $res;
 
-//            while($result = $result->fetch()) {
-//                # Вызываем наш метод full_name
-//                echo $user->full_name();
-//            }
-
-//            $params = array(':username' => 'test', ':email' => $mail, ':last_login' => time() - 3600);
-//            $pdo->prepare('SELECT * FROM users WHERE username = :username AND email = :email AND last_login > :last_login');
-//            $pdo->execute($params);
-            return $result->fetchAll();
         } catch(PDOException $e) {
             return 'Error: ' . $e->getMessage();
         }
@@ -367,7 +391,7 @@ class Utils {
 
     public function writeFile($file,$entry) {
         $fp = fopen($file, 'a+', LOCK_EX)
-            or die("ERROR: Can't write to [".$file."], please make sure that your path is correct and you have 
+            or die("ERROR: Can't write to [".$file."], please make sure that your path is correct and you have
                     appropriate permissions on the target directory and/or file!");
         fputs($fp, $entry);
         fclose($fp);

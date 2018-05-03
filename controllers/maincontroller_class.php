@@ -87,18 +87,24 @@ $guestParam["refer"]
     }
 
     public function actionContact() {
-//		$this->title     = "Внутренняя страница";
-//		$this->meta_desc = "Описание внутренней страницы.";
-//		$this->meta_key  = "описание, описание внутренней страницы";
+        $formFactor = $this->utils->sqlSelect($this->dbh,QueryMap::SELECT_FORM_PHRAZEZ,["3"]);
 
-//		$content = $this->view->render("about", array(), true);
-//        $params = array();
-//        $params = $this->langPack;
+        $content="";
+        $result = array();
+        foreach ($formFactor as $item) {
+            foreach ($item as $k => $v) {
+                $newKey="";
+//                if (preg_match("/required/i",$k) && $v > 0) {
+//                    $newKey=sprintf("%s_required",$item["field_name"]);
+//                } else {
+                    $newKey=sprintf("%s_%s",$item["field_name"],$k);
+//                }
 
-//        $params["form"] = 'contact form goes here ';
-
-        $content = $this->view->render("contact", $this->langPack, true);
-
+                $result[$newKey] = $v;
+            }
+        }
+//        var_dump($result);
+        $content = $this->view->render("contact", $result, true);
         $this->render($content);
     }
 

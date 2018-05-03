@@ -8,7 +8,8 @@ AddDefaultCharset UTF-8
 
 <FilesMatch "\.(ttf|otf|eot|woff)$">
 <IfModule mod_headers.c>
-    Header set Access-Control-Allow-Origin "http://lucky-dress.eu"
+#    Header set Access-Control-Allow-Origin "http://lucky-dress.eu"
+    Header set Access-Control-Allow-Origin "dress"
 </IfModule>
 </FilesMatch>
 
@@ -19,7 +20,8 @@ RewriteRule ^(.*) ./?%{QUERY_STRING}
 
 # предотвратить хотлинкинг изображений с сайта
 RewriteCond %{HTTP_REFERER} !^$
-RewriteCond %{HTTP_REFERER} !^http(s)?://(www\.)?lucky-dress.eu [NC]
+#RewriteCond %{HTTP_REFERER} !^http(s)?://(www\.)?lucky-dress.eu [NC]
+RewriteCond %{HTTP_REFERER} !^http(s)?://(www\.)?dress [NC]
 RewriteRule \.(jpg|jpeg|png|gif)$ - [NC,F,L]
 
 # отключаем вывод ошибок пользователям
@@ -68,6 +70,7 @@ ErrorDocument 504 /bin/errors.php
 </IfModule>
 
 ## USER AGENT BANING
+SetEnvIfNoCase User-Agent ^$ bad_bot
 SetEnvIfNoCase User-Agent "^Black Hole" bad_bot
 SetEnvIfNoCase User-Agent "^Titan" bad_bot
 SetEnvIfNoCase User-Agent "^WebStripper" bad_bot
@@ -199,13 +202,24 @@ SetEnvIfNoCase User-Agent "^MJ12Bot" bad_bot
 SetEnvIfNoCase User-Agent "^blog.ucoz.ru" bad_bot
 SetEnvIfNoCase User-Agent "^ucrawler" bad_bot
 SetEnvIfNoCase User-Agent "^researchscan" bad_bot
-SetEnvIfNoCase User-Agent "^researchscan.comsys.rwth-aachen.de" bad_bot
-SetEnvIfNoCase User-Agent "^python-requests" bad_bot
+SetEnvIfNoCase User-Agent "^researchscan\.comsys\.rwth\-aachen\.de" bad_bot
+SetEnvIfNoCase User-Agent "python\-requests" bad_bot
 SetEnvIfNoCase User-Agent "^cors bot" bad_bot
 SetEnvIfNoCase User-Agent "^spbot" bad_bot
+SetEnvIfNoCase User-Agent "zgrab" bad_bot
+SetEnvIfNoCase User-Agent "^whoismining\.com" bad_bot
+SetEnvIfNoCase User-Agent "^evc\-batch" bad_bot
 
-<limit get="" post="" head="">
- Order Allow,Deny
- Allow from all
- Deny from env=bad_bot
-</limit>
+# Vulnerability Scanners
+SetEnvIfNoCase User-Agent "Acunetix" bad_bot
+SetEnvIfNoCase User-Agent "FHscan" bad_bot
+
+# Aggressive Chinese Search Engine
+SetEnvIfNoCase User-Agent "Baiduspider" bad_bot
+
+<Limit GET POST HEAD>
+Order Allow,Deny
+Allow from all
+Deny from env=bad_bot
+</Limit>
+
