@@ -56,5 +56,4 @@ return array(
     'ads.txt-crawler',
     'adstxtcrawler',
     'ucrawler',
-    'mod_pagespeed',
 );

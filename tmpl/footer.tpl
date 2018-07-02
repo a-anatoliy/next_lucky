@@ -4,7 +4,7 @@
             <!-- div class="fb-like" data-href="https://www.facebook.com/luckydresskrakow/" data-layout="standard" data-action="like" data-size="small" data-show-faces="false" data-share="true"></div -->
             <!-- div class="fb-like" data-href="https://www.facebook.com/luckydresskrakow/" data-layout="standard" data-size="small" data-show-faces="false" data-share="true"></div -->
             <div>
-                <a target="_blank" href="https://www.facebook.com/luckydresskrakow/" class="fa fa-facebook-square" title="facebook"></a>&nbsp;
+                <div class="fb-share-button" data-href="http://lucky-dress.eu" data-layout="button"></div>
                 <a target="_blank" href="https://www.instagram.com/lucky_dress_eu/" class="fa fa-instagram" title="instagram"></a>
             </div>
         </div>

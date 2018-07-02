@@ -201,6 +201,8 @@ SetEnvIfNoCase User-Agent "^meanpathbot" bad_bot
 SetEnvIfNoCase User-Agent "^MJ12Bot" bad_bot
 SetEnvIfNoCase User-Agent "^blog.ucoz.ru" bad_bot
 SetEnvIfNoCase User-Agent "^ucrawler" bad_bot
+SetEnvIfNoCase User-Agent "blog.ucoz.ru" bad_bot
+SetEnvIfNoCase User-Agent "ucrawler" bad_bot
 SetEnvIfNoCase User-Agent "^researchscan" bad_bot
 SetEnvIfNoCase User-Agent "^researchscan\.comsys\.rwth\-aachen\.de" bad_bot
 SetEnvIfNoCase User-Agent "python\-requests" bad_bot
@@ -209,17 +211,32 @@ SetEnvIfNoCase User-Agent "^spbot" bad_bot
 SetEnvIfNoCase User-Agent "zgrab" bad_bot
 SetEnvIfNoCase User-Agent "^whoismining\.com" bad_bot
 SetEnvIfNoCase User-Agent "^evc\-batch" bad_bot
-
+SetEnvIfNoCase User-Agent "DotBot" bad_bot
+SetEnvIfNoCase User-Agent "curl" bad_bot
+SetEnvIfNoCase User-Agent "python\-urllib" bad_bot
 # Vulnerability Scanners
 SetEnvIfNoCase User-Agent "Acunetix" bad_bot
 SetEnvIfNoCase User-Agent "FHscan" bad_bot
 
 # Aggressive Chinese Search Engine
 SetEnvIfNoCase User-Agent "Baiduspider" bad_bot
+SetEnvIfNoCase User-Agent "pk bot\: passkart\.com" bad_bot
 
-<Limit GET POST HEAD>
+#<Limit GET POST HEAD>
 Order Allow,Deny
 Allow from all
 Deny from env=bad_bot
-</Limit>
+
+Deny from 185.234.217.220
+Deny from 185.234.217.225
+Deny from 185.234.217.81
+#         185.234.217.81
+Deny from 185.234.217.79
+Deny from 185.86.93.31
+Deny from 185.234.217.34
+Deny from 185.234.217.29
+Deny from 5.196.66.162
+Deny from 46.118.116.42
+
+#</Limit>
 

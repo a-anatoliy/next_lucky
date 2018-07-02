@@ -1,6 +1,3 @@
-<script>
-    fbq('track', 'CompleteRegistration');
-</script>
 <!-- Contact Section -->
     <div class="container">
         <div class="row">
@@ -17,39 +14,34 @@
                 <form role="form" id="contactForm" class="animated shake needs-validation">
                     <div class="row">
                         <div class="col-6">
-
                             <div class="form-group">
                                 <div class="input-group">
-                                    <div class="input-group-prepend"><div class="input-group-text"><span class="fa fa-user"></span></div></div>
-                                    <input type="text" class="form-control" name="name" id="name" placeholder="<?=$name_placeholder?>" title="<?=$name_title?>" required />
+                                    <div class="input-group-prepend"><div class="input-group-text"><span class="fa fa-user"></div></div>
+                                    <input type="text" class="form-control" name="name" id="name" placeholder="<?=$name?>" required />
                                 </div>
                             </div>
 
                             <div class="form-group">
                                 <div class="input-group">
                                     <div class="input-group-prepend"><div class="input-group-text"><span class="fa fa-envelope"></span></div></div>
-                                    <input type="email" class="form-control" name="email" id="email" placeholder="<?=$email_placeholder?>" title="<?=$email_title?>" required />
+                                    <input type="email" class="form-control" name="email" id="email" placeholder="Email" required="required" />
                                 </div>
                             </div>
-
                             <div class="form-group">
                                 <div class="input-group">
                                     <div class="input-group-prepend"><div class="input-group-text"><span class="fa fa-phone"></span></div></div>
-                                    <input type="phone" class="form-control" name="phone" id="phone" placeholder="<?=$phone_placeholder?>" title="<?=$phone_title?>"/>
+                                    <input type="phone" class="form-control" name="phone" id="phone" placeholder="<?=$phoneNumb?>" />
                                 </div>
                             </div>
                         </div>
-
                         <div class="col-6">
-
                             <div class="form-group">
-                                <textarea name="message" id="message" class="form-control" rows="6" cols="25" placeholder="<?=$message_placeholder?>" title="<?=$message_title?>" required></textarea>
+                                <textarea name="message" id="message" class="form-control" rows="6" cols="25" required="required" placeholder="<?=$message?>"></textarea>
                             </div>
-
                         </div>
                         <div class="col-12 form-group">
                             <div class="clearfix">
-                                <button type="submit" id="form-submit" class="btn btn-secondary contact-button float-left" title="<?=$act_title?>"> <?=$act_placeholder?> </button>
+                                <button type="submit" id="form-submit" class="btn btn-secondary contact-button float-left"> <?=$act?> </button>
                                 &nbsp; <button type="reset" value="reset" accesskey="r" id="form-submit" class="btn btn-secondary contact-button" onclick="formReset()"> reset </button>
                                 <div id="msgSubmit" class="float-lg-right hidden"></div>
                             </div>

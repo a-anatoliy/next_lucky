@@ -22,7 +22,6 @@ body {
 
 #brdr {
     line-height: 1; border: 1px solid red;
-    background-color: #9d9d9d;
 }
 
 .handwrited { font-family: 'Italianno', cursive; font-size: 2.1rem; }
@@ -137,8 +136,6 @@ h1, h2, h3, h4, h5, h6 { font-family: "Playfair Display", Georgia, "Times New Ro
 .active-link { text-shadow: none; color: #ff8080 !important; text-decoration: underline; }
 /*.nav-link:hover { text-shadow: 1px 1px white, -1px -1px #444 }*/
 
-.headerLink:hover { color: #666666 !important; text-decoration: none; }
-.headerLink { color: #666666 !important; }
 /*
  * Blog name and description
  */
