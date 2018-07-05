@@ -22,7 +22,9 @@ class Informer {
 
         $cfg = require_once CONFIG;
         $this->sendto     = $cfg["form"]["to"];
+        $this->Cc_sendto  = $cfg["form"]["cc"];
         $this->Bcc_sendto = $cfg["form"]["bcc"];
+        $this->sendFrom   = $cfg["form"]["from"];
 
         $this->encyOK   = ROOT_DIR . $cfg["stat"]["OK_mail"];
         $this->encyFAIL = ROOT_DIR . $cfg["stat"]["FAIL_mail"];
@@ -47,13 +49,14 @@ class Informer {
     public function informUs() {
         if(!isset($this->hasError)) {
             // creating headers
-            // $to= "Mary <mary@example.com>" . ", " ; //обратите внимание на запятую
-            // $to .= "Kelly <kelly@example.com>";
-            $m = strip_tags($this->usermail) . "\r\n";
-            $headers  = "From: "    . $m;
-            $headers .= "Reply-To: ". $m;
-            $headers .= 'Cc: '      . $m;
-            $headers .= 'Bcc: '     . $this->Bcc_sendto . ', WebMaster <a3three@gmail.com>';
+            $headers  = "From: "    . $this->composeMAilAddr("Lucky Dress",$this->sendFrom);
+            $headers .= "Reply-To: ". $this->composeMAilAddr($this->username,$this->usermail);
+            if (!empty($this->Cc_sendto)) {
+                $headers .= 'Cc: '  . $this->composeMAilAddr("Lucky DRESS copy",$this->Cc_sendto);
+            }
+
+            $bcc = (empty($this->Bcc_sendto)) ? "" : $this->Bcc_sendto . ', ';
+            $headers .= 'Bcc: ' . $bcc . $this->composeMAilAddr("WebMaster","a3three@gmail.com");
             $headers .= "MIME-Version: 1.0\r\n";
             $headers .= "Content-Type: text/html;charset=utf-8 \r\n";
 
@@ -80,6 +83,10 @@ class Informer {
         } else { $this->setSentMsgStatus($this::SENT_BAD); }
 
         return $this;
+    }
+
+    private function composeMAilAddr($Name, $address) {
+        return sprintf("%s <%s>\r\n",strip_tags($Name),strip_tags($address));
     }
 
     private function setSentMsgStatus($code) {
