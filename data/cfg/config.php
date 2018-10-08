@@ -1,10 +1,10 @@
 <?php 
 return array(
     'db' => array(
-        'host' => '23159.m.tld.pl',
-        'user' => 'admin23159_lucky_dress',
-        'pass' => 'v4320942VV',
-        'name' => 'baza23159_lucky_dress' ,
+        'host' => '',
+        'user' => '',
+        'pass' => '',
+        'name' => '' ,
     ),
     'site' => array(
         'url'     => 'http://lucky-dress.eu/',
@@ -17,11 +17,11 @@ return array(
         'hits'      => '/data/hitcount.txt',
     ),
  'form' => array(
-//	'to'   => 'a3three@gmail.com',
-//  'bcc'  => 'olyusya932@gmail.com',
-     'bcc' => 'athree@protonmail.com',
-     'to'  => 'apanolga@gmail.com',
-	'from' => 'info@lucky-dress.eu',
+//	'to'   => '',
+//  'bcc'  => '',
+     'bcc' => '',
+     'to'  => '',
+	'from' => '',
     ),
     'menu_items' => array(
         1 => array('href' => 'home'   ),
